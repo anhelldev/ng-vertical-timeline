@@ -1,63 +1,116 @@
-# VerticalTimeline
+# Angular Vertical Timeline
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+A sleek and flexible Angular component for displaying a chronological timeline. Built with modern Angular features (Standalone, Signals, Zoning-less friendly), it offers both default styling and customizable visualization options for your chronological data.
 
-## Code scaffolding
+## Features
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Modern Angular**: Standalone components, robust signals approach.
+- **Auto-grouping**: Automatically organizes your timeline items by Year and Date.
+- **Navigable**: Side navigation menu grouped by timeline entries.
+- **Smooth scrolling**: Click a timeline thumbnail to scroll directly to the chosen event.
+- **Customizable**: Supply your own component for rendering items instead of using the default one!
 
-```bash
-ng generate component component-name
-```
+## Installation
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
+To install this library into your Angular project, run:
 
 ```bash
-ng build vertical-timeline
+npm install vertical-timeline
 ```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
+> **Note:** Make sure you have the `@angular/core` and `@angular/common` dependencies installed (requires Angular v17+).
 
-### Publishing the Library
+## Basic Usage
 
-Once the project is built, you can publish your library by following these steps:
+Import `VerticalTimeline` into your standalone component or NgModule:
 
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/vertical-timeline
-   ```
+```typescript
+import { Component } from '@angular/core';
+import { VerticalTimeline } from 'vertical-timeline';
+import { TimeLineItem } from 'vertical-timeline';
 
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [VerticalTimeline],
+  template: `
+    <div style="width: 100%; max-width: 800px; margin: 0 auto;">
+      <lib-vertical-timeline [items]="timelineData" [timelineWidth]="150" height="700px">
+      </lib-vertical-timeline>
+    </div>
+  `,
+})
+export class AppComponent {
+  timelineData: TimeLineItem[] = [
+    {
+      id: 'event-1',
+      title: 'Project Kickoff',
+      description: 'The start of something amazing.',
+      date: new Date('2024-01-15T10:00:00'),
+      icon: 'rocket',
+      color: '#3498db',
+      imageSrc: 'assets/kickoff.png',
+      thumbnailSrc: 'assets/kickoff-thumb.png',
+    },
+    {
+      id: 'event-2',
+      title: 'First Release',
+      description: 'V1.0 is officially live!',
+      date: new Date('2024-06-20T14:30:00'),
+      icon: 'check-circle',
+      color: '#2ecc71',
+    },
+  ];
+}
 ```
 
-## Running end-to-end tests
+## Advanced Customization (Custom Component Rendering)
 
-For end-to-end (e2e) testing, run:
+If you aren't satisfied with the default rendering (`lib-base-element`), you can pass your own component using the `customComponent` input.
 
-```bash
-ng e2e
+```html
+<lib-vertical-timeline [items]="timelineData" [customComponent]="MyCustomCardComponent">
+  <!-- Add any additional content projection if supported -->
+</lib-vertical-timeline>
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## API Reference
 
-## Additional Resources
+### Inputs
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Input                   | Type                    | Default                                   | Description                                                      |
+| ----------------------- | ----------------------- | ----------------------------------------- | ---------------------------------------------------------------- |
+| `items`                 | `TimeLineItem[]`        | `[]`                                      | The array of timeline events to display.                         |
+| `timelineWidth`         | `number`                | `100`                                     | The width (in pixels) of the right-side timeline navigation bar. |
+| `height`                | `string`                | `'600px'`                                 | The CSS height given to the scrollable container.                |
+| `customComponent`       | `Component`             | `undefined`                               | A custom Angular component to render each timeline item.         |
+| `scrollIntoViewOptions` | `ScrollIntoViewOptions` | `{ behavior: 'smooth', block: 'center' }` | Options indicating how to scroll when navigating to an element.  |
+
+### Models
+
+#### `TimeLineItem`
+
+The primary data type for populating the timeline.
+
+```typescript
+export interface TimeLineItem {
+  id: string; // Unique identifier (used for scroll linking)
+  title: string; // Main event title
+  description: string; // Detailed event description
+  date: Date; // Timeline sorting and grouping date
+  icon: string; // Icon identifier or class
+  color: string; // Accent color for the item
+  imageSrc?: string; // Main image URL (optional)
+  thumbnailSrc?: string; // Navigation thumbnail URL (optional)
+  customFooterMessage?: string; // Optional footer note
+  url?: string; // Optional link url
+}
+```
+
+## Styling
+
+The timeline comes with a lightweight base design. The main layout is divided into the scrolling events area and a sticky navigation timeline on the right side. You can override its base classes via global CSS by targeting `.timeline-container`, `.scroll-container`, `.timeline-nav`, `.thumbnail-image`, and more.
+
+## License
+
+MIT License
