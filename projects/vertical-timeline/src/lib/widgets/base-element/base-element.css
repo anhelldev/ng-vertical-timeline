@@ -1,0 +1,52 @@
+.black-box {
+  background-color: #212121;
+}
+
+.absolute-info {
+  position: absolute;
+  background-color: #212121;
+  color: #fff;
+  bottom: 3%;
+  left: 1%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.image-container {
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.image-link img {
+  transition: all 0.3s ease-in-out;
+}
+
+.image-with-description {
+  background-color: #000;
+  min-height: 200px;
+  object-fit: cover;
+}
+
+.image-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-link:hover img {
+  transform: scale(1.05);
+}
+
+.error-message {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

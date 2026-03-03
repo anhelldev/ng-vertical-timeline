@@ -1,0 +1,56 @@
+.timeline-nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.timeline-container {
+  position: relative;
+}
+
+.separator {
+  height: 20px;
+  width: 1px;
+  background-color: #e6e8f0;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.scroll-container {
+  height: 600px;
+  overflow-y: auto;
+}
+
+.text-year {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.text-date {
+  text-align: center;
+}
+
+.link-image {
+  cursor: pointer;
+}
+
+.thumbnail-image {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.thumbnail-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-link {
+  cursor: pointer;
+}

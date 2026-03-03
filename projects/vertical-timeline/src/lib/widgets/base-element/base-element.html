@@ -1,0 +1,25 @@
+<div [id]="item()?.id" class="image-container">
+  <a class="image-link" [href]="item()?.url" target="_blank">
+    <img class="image-with-description" [src]="imageUrl" loading="lazy" />
+
+    @if (imageError()) {
+      <div class="error-message text-center">
+        {{ errorMessage() }}
+      </div>
+    }
+    <div class="absolute-info">
+      <div class="">
+        {{ item()?.date | date: 'MMMM dd, yyyy' }}
+      </div>
+      @if (item()?.customFooterMessage) {
+        <div class="">
+          <div class="">
+            <div>
+              {{ item()?.customFooterMessage }}
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </a>
+</div>

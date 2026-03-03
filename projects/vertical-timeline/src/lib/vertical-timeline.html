@@ -1,0 +1,45 @@
+<div class="timeline-container">
+  <div
+    #scrollContainer
+    class="scroll-container"
+    [style.width]="'calc(100% - ' + timelineWidth() + 'px)'"
+    [style.height]="height()"
+  >
+    @for (item of items(); track $index) {
+      @if (customComponent()) {
+        <div [id]="item.id">
+          <ng-content></ng-content>
+        </div>
+      } @else {
+        <lib-base-element [item]="item"></lib-base-element>
+      }
+    }
+  </div>
+  <div class="timeline-nav" [style.width.px]="timelineWidth()">
+    @for (year of years(); track $index) {
+      <div class="text-year">{{ year }}</div>
+      <div class="separator"></div>
+      @for (singleItem of elementsByYear()[year]; track $index) {
+        <div class="text-date">
+          {{ singleItem.date | date: 'MMMM dd' }}
+        </div>
+        <div class="thumbnail-div">
+          <a (click)="scrollTo(singleItem.id)" class="thumbnail-link">
+            <img
+              #img
+              (error)="img.src = ''"
+              class="thumbnail-image"
+              [src]="singleItem.thumbnailSrc"
+            />
+          </a>
+        </div>
+        @if (!$last) {
+          <div class="separator"></div>
+        }
+      }
+      @if (!$last) {
+        <div class="separator"></div>
+      }
+    }
+  </div>
+</div>
