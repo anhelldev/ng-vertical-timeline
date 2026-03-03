@@ -1,7 +1,16 @@
 {
-  "name": "vertical-timeline",
-  "version": "0.0.1",
+  "name": "ng-vertical-timeline-component",
+  "version": "0.0.2",
   "license": "MIT",
+  "keywords": [
+    "angular",
+    "timeline",
+    "vertical-timeline",
+    "components",
+    "events",
+    "signals",
+    "chronological"
+  ],
   "peerDependencies": {
     "@angular/common": "^20.3.0",
     "@angular/core": "^20.3.0"

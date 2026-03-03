@@ -15,7 +15,7 @@ A sleek and flexible Angular component for displaying a chronological timeline. 
 To install this library into your Angular project, run:
 
 ```bash
-npm install vertical-timeline
+npm install ng-vertical-timeline-component
 ```
 
 > **Note:** Make sure you have the `@angular/core` and `@angular/common` dependencies installed (requires Angular v17+).
@@ -26,8 +26,8 @@ Import `VerticalTimeline` into your standalone component or NgModule:
 
 ```typescript
 import { Component } from '@angular/core';
-import { VerticalTimeline } from 'vertical-timeline';
-import { TimeLineItem } from 'vertical-timeline';
+import { VerticalTimeline } from 'ng-vertical-timeline-component';
+import { TimeLineItem } from 'ng-vertical-timeline-component';
 
 @Component({
   selector: 'app-root',
